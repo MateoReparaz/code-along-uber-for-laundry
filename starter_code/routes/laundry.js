@@ -12,7 +12,6 @@ router.get('/dashboard', (req, res, next) => {
   } else {
     query = { user: req.session.passport.user };
   }
-console.log(query)
   LaundryPickup
     .find(query)
     .populate('user', 'username')
@@ -23,7 +22,6 @@ console.log(query)
         next(err);
         return;
       }
-      console.log(pickupDocs)
       res.render('laundry/dashboard', {
         pickups: pickupDocs
       });
@@ -83,11 +81,21 @@ router.get("/launderers/:id", (req, res, next) => {
 });
 
 router.post("/laundry-pickups", (req, res, next) => {
+  let dateString = req.body.pickupDate
+  const date = new Date (dateString);
+  const today = new Date();
+  console.log(date, today)
+  if (date < today){
+    res.render("laundry/launderer-profile", {message: "Incorrect Date"});
+    return;
+  }
   const pickupInfo = {
     pickupDate: req.body.pickupDate,
     launderer: req.body.laundererId,
     user: req.session.passport.user
   };
+
+  
 
   const thePickup = new LaundryPickup(pickupInfo);
 

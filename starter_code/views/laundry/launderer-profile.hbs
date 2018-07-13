@@ -20,6 +20,9 @@
       <br>
     </label>
     <input type="date" name="pickupDate" id="pickup-date-input">
+    {{#if message}}
+    <br><label for="error">{{message}}</label>
+    {{/if}}
   </div>
 <br>
   <input type="hidden" name="laundererId" value="{{ theLaunderer._id }}">
