@@ -1,15 +1,15 @@
 <h2> Sign Up </h2>
 
-{{#if errorMessage}}
+{{#if message}}
   <p class="error-message">
-    {{ errorMessage }}
+    {{ message }}
   </p>
 {{/if}}
 
 <form action="/signup" method="post">
   <div>
     <label for="name-input"> Name </label>
-    <input type="text" name="name" id="name-input"
+    <input type="text" name="username" id="name-input"
       placeholder="e.g., Diana Prince">
   </div>
 
