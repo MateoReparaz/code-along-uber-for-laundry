@@ -75,5 +75,7 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes)
 
+const laundryRoutes = require("./routes/laundry");
+app.use("/", laundryRoutes);
 
 module.exports = app;
